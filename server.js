@@ -4,6 +4,7 @@ const mongoose = require('mongoose')
 const app = express();
 const cors = require('cors');
 
+const routes = require('./routes');
 
 app.use(cors());
 app.use(express.json())
@@ -25,7 +26,7 @@ const port = process.env.PORT || 3000;
 
 
 
-
+app.use('/', routes);
 
 
 app.get('/api/', (req, res) => {

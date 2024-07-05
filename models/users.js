@@ -1,27 +1,32 @@
 const mongoose = require("mongoose");
-const {nanoid} = require('nanoid');
+const { nanoid } = require("nanoid");
 
-const UsersSchema = mongoose.Schema(
+const id = nanoid()
+const UsersSchema = new mongoose.Schema(
     {
-        user_id:{
-            type:String,
-            default: ()=>nanoid(),
-            required:true,
-            unique:true
+        user_id: {
+            type: String,
+            required: true,
+            unique: true,
+            default: id,
         },
-        role:{
-            type:String
+        role: {
+            type: String
         },
-        password:{
-            type:String
+        password: {
+            type: String
         },
-        phoneNumber:{
-            type:String
+        phoneNumber: {
+            type: String
+        },
+        email: {
+            type: String
         }
     },
     {
-        timestamps:true
+        timestamps: true
     }
 )
 
-module.exports = mongoose.model("UsersSchema",UsersSchema);
+const Users = mongoose.model("UserSchema", UsersSchema);
+module.exports = Users 
