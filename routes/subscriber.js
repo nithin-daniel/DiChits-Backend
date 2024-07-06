@@ -15,7 +15,7 @@ router.post('/subscriber-details', async (req, res) => {
             return res.status(400).json({ message: "User Already created the Subscruber Details" });
         }
         const subscriberDetails = new SuscriberDetailsSchema({
-            id:user_id,
+            user_id:user_id,
             dob:dob,
             gender:gender,
             age:age,

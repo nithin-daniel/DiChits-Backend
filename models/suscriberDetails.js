@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 
 const SuscriberDetailsSchema = mongoose.Schema(
     {
-        id:{
+        user_id:{
             type:String
         },
         name:{

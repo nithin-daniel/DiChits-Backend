@@ -5,10 +5,13 @@ const router = express.Router();
 
 const auth = require('./users');
 const suscriberDetails = require('./subscriber');
+const Chittis = require('./chittis');
 
 
 router.use('/auth', auth);
 router.use('/user', suscriberDetails);
+router.use('/chitti', Chittis);
+
 
 
 
