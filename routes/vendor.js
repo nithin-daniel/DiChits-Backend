@@ -1,32 +1,21 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router()
-const  VendorDetailsSchema  = require("../models/vendorDetails");
+const VendorDetailsSchema = require("../models/vendorDetails");
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const Chittis = require('../models/Chittis');
 
 
-router.post('/register', async (req, res) => {
-    const { role, password, phoneNumber, email } = req.body;
+router.get('/all-chitti', async (req, res) => {
+    const { id } = req.body;
     try {
-        let user = await VendorDetailsSchema.findOne({ email: email });
-
-        if (user) {
-            return res.status(400).json({ message: 'Email id already used' });
-        }
-        const salt = await bcrypt.genSalt(10)
-        const salt_password = await bcrypt.hash(password, salt);
-        const newUser = new UsersSchema({
-            role: role,
-            password: salt_password,
-            phoneNumber: phoneNumber,
-            email: email
-        })
-        await newUser.save()
+        const chittis = await Chittis.find({ user_id: id })
         return res.status(200).json({
             status: 200,
-            message: 'User created successfully'
-        })
+            message: 'Chitti retrived successfully',
+            data: chittis
+        });
     } catch (error) {
         return res.status(400).json({ message: error.message });
     }
