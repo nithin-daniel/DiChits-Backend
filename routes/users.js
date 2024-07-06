@@ -1,7 +1,7 @@
 require('dotenv').config()
 const express = require('express')
 const router = express.Router()
-const  UsersSchema  = require("../models/users");
+const UsersSchema = require("../models/users");
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
@@ -30,5 +30,35 @@ router.post('/register', async (req, res) => {
         return res.status(400).json({ message: error.message });
     }
 });
+
+router.post("/login", async (req, res) => {
+    try {
+        const { phoneNumber, password } = req.body;
+        if (!phoneNumber) {
+
+            return res.status(400).json({ message: 'Phone Number Required' });
+        }
+        if (!password) {
+
+            return res.status(400).json({ message: 'Password Required' });
+        }
+        const user = await UsersSchema.findOne({ phoneNumber: phoneNumber });
+
+        if (user.length === 0) {
+            return res.status(400).json({ message: 'User not found' });
+        }
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (user && passwordMatch) {
+            return res.status(200).json({
+                status: 200,
+                message: 'User Logged in'
+            })
+        }
+        return res.status(400).json({ message: 'Phone or Password is wrong' });
+
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
+    }
+})
 
 module.exports = router;
