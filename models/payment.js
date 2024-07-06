@@ -7,6 +7,9 @@ const PaymentSchema = mongoose.Schema(
         },
         ticket_number:{
             type:Number
+        },
+        user_id:{
+            type:String
         }
     },
     {
@@ -14,4 +17,4 @@ const PaymentSchema = mongoose.Schema(
     }
 )
 
-module.exports = mongoose.exports("PaymentSchema",PaymentSchema);
+module.exports = mongoose.model("Payment",PaymentSchema);

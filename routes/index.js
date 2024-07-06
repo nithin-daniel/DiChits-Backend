@@ -6,11 +6,14 @@ const router = express.Router();
 const auth = require('./users');
 const suscriberDetails = require('./subscriber');
 const Chittis = require('./chittis');
+const payment = require('./payment');
 
 
 router.use('/auth', auth);
 router.use('/user', suscriberDetails);
 router.use('/chitti', Chittis);
+router.use('/payment', payment);
+
 
 
 
