@@ -17,6 +17,9 @@ const Chittis = mongoose.Schema(
         amount:{
             type:String
         }
+    },
+    {
+        timestamps:true
     }
 )
 

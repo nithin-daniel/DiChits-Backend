@@ -6,6 +6,7 @@ const UsersSchema = require("../models/users");
 
 const mongoose = require('mongoose');
 const Chittis = require('../models/Chittis');
+const userChitti = require('../models/userChitti');
 
 
 router.post('/add', async (req, res) => {
@@ -18,7 +19,15 @@ router.post('/add', async (req, res) => {
             no_of_tickets: no_of_tickets,
             amount: amount
         });
-        await chitti.save()
+
+        const user_chitti = new userChitti({
+            vendor_id: user_id,
+            chitti_id: chitti.id
+        });
+
+        await chitti.save();
+        await user_chitti.save()
+
         return res.status(200).json({
             status: 200,
             message: 'Chitti created successfully'
