@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
+const UsersSchema = require("./users");
+const Schema = mongoose.Schema;
 
 const SuscriberDetailsSchema = mongoose.Schema(
     {
-        user_id:{
-            type:String,
-            required:true
+        id:{
+            type:String
         },
         name:{
             type:String
@@ -36,4 +37,4 @@ const SuscriberDetailsSchema = mongoose.Schema(
     }
 )
 
-module.exports = mongoose.model("SuscriberDetailsSchema",SuscriberDetailsSchema);
+module.exports = mongoose.model("SuscriberDetails",SuscriberDetailsSchema);

@@ -51,7 +51,8 @@ router.post("/login", async (req, res) => {
         if (user && passwordMatch) {
             return res.status(200).json({
                 status: 200,
-                message: 'User Logged in'
+                message: 'User Logged in',
+                data:user
             })
         }
         return res.status(400).json({ message: 'Phone or Password is wrong' });

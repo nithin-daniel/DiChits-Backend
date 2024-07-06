@@ -4,9 +4,12 @@ const router = express.Router();
 
 
 const auth = require('./users');
+const suscriberDetails = require('./subscriber');
 
 
 router.use('/auth', auth);
+router.use('/user', suscriberDetails);
+
 
 
 router.get('/', (req, res) => {
