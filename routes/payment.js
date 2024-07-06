@@ -11,11 +11,12 @@ const payment = require('../models/payment');
 
 router.post('/add', async (req, res) => {
     try {
-        const { ticket_number, user_id, user_chit_id } = req.body;
+        const { ticket_number, user_id, user_chit_id, chitti_id } = req.body;
         const NewPayment = new payment({
             user_id: user_id,
             user_chit_id: user_chit_id,
             ticket_number: ticket_number,
+            chitti_id: chitti_id
         });
 
         await NewPayment.save()
