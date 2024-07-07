@@ -37,7 +37,7 @@ router.get('/chitti/:id', async (req, res) => {
         return res.status(200).json({
             status: 200,
             message: 'Chitti retrived successfully',
-            data: payments
+            data: { "Payment Transaction": payments, "Chitt Details": chittis },
         });
     } catch (error) {
         return res.status(400).json({ message: error.message });
