@@ -24,7 +24,7 @@ router.post('/register', async (req, res) => {
 
         })
         await newUser.save()
-        const subscriber_details = await find({ user_id: newUser._id })
+        const subscriber_details = await suscriberDetails.find({ user_id: newUser._id })
         return res.status(200).json({
             status: 200,
             message: 'User created successfully',
