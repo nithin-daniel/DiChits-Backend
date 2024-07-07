@@ -4,7 +4,7 @@ const { nanoid } = require("nanoid");
 const id = nanoid()
 const UsersSchema = new mongoose.Schema(
     {
-        id: {
+        user_id: {
             type: String,
             required: true,
             unique: true,
