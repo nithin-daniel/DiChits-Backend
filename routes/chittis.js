@@ -10,7 +10,7 @@ const userChitti = require('../models/userChitti');
 
 
 router.post('/add', async (req, res) => {
-    const { name, user_id, date_of_start, no_of_tickets, amount } = req.body;
+    const { name, user_id, date_of_start, no_of_tickets, amount, vendor_id } = req.body;
     try {
         const chitti = new Chittis({
             user_id: user_id,
@@ -21,7 +21,8 @@ router.post('/add', async (req, res) => {
         });
 
         const user_chitti = new userChitti({
-            vendor_id: user_id,
+            vendor_id: vendor_id,
+            user_id: user_id,
             chitti_id: chitti.id
         });
 
