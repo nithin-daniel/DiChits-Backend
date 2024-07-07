@@ -20,7 +20,7 @@ router.post('/add', async (req, res) => {
             date_of_start: date_of_start,
             no_of_tickets: no_of_tickets,
             amount: amount,
-            company_name: companyName.name
+            company_name: companyName[0].name
         });
 
         const user_chitti = new userChitti({

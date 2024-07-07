@@ -17,6 +17,8 @@ router.use('/chitti', Chittis);
 router.use('/payment', payment);
 router.use('/vendor', vendorDetails);
 router.use('/chitti-request', chittiRequest);
+router.use('/subscriber', suscriberDetails);
+
 
 
 
