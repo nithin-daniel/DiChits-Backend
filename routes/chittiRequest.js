@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     const { chittiId } = req.body;
 
     try {
-        const chitti = await chittiRequest.find({ chitti_id: chittiId })
+        const chitti = await chittiRequest.find({ chitti_id: chittiId,status:"PENDING" })
         if (chitti.length === 0) {
             return res.status(404).json({ message: "Chitti not found" });
 
