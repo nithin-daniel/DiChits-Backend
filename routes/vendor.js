@@ -12,6 +12,10 @@ router.get('/chitti', async (req, res) => {
     const { id } = req.body;
     try {
         const chittis = await Chittis.find({ user_id: id })
+
+        if (chittis.length == 0) {
+            return res.status(404).json({ status: 404, message: "Chitti Not Found" });
+        }
         return res.status(200).json({
             status: 200,
             message: 'Chitti retrived successfully',
