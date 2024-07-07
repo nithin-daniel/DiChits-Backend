@@ -7,9 +7,9 @@ const bcrypt = require('bcrypt');
 
 
 router.post('/register', async (req, res) => {
-    const { role, password, phoneNumber } = req.body;
+    const { role, password, phone_number } = req.body;
     try {
-        let user = await UsersSchema.findOne({ phoneNumber: phoneNumber });
+        let user = await UsersSchema.findOne({ phoneNumber: phone_number });
 
         if (user) {
             return res.status(400).json({ message: 'Phone number already used' });
