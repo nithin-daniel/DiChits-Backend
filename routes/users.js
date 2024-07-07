@@ -19,7 +19,8 @@ router.post('/register', async (req, res) => {
         const newUser = new UsersSchema({
             role: role,
             password: salt_password,
-            phoneNumber: phone_number
+            phoneNumber: phone_number,
+            id: mongoose.Types.ObjectId()
         })
         await newUser.save()
         return res.status(200).json({
