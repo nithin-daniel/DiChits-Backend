@@ -11,7 +11,7 @@ router.post('/register', async (req, res) => {
     try {
         let user = await UsersSchema.findOne({ phoneNumber: phoneNumber });
 
-        if (user) {
+        if (user.length === 0) {
             return res.status(400).json({ message: 'Phone number already used' });
         }
         const salt = await bcrypt.genSalt(10)
@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
             return res.status(200).json({
                 status: 200,
                 message: 'User Logged in',
-                data:user
+                data: user
             })
         }
         return res.status(400).json({ message: 'Phone or Password is wrong' });
