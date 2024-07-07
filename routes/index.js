@@ -8,6 +8,7 @@ const suscriberDetails = require('./subscriber');
 const Chittis = require('./chittis');
 const payment = require('./payment');
 const vendorDetails = require('./vendor');
+const chittiRequest = require('./chittiRequest');
 
 
 router.use('/auth', auth);
@@ -15,6 +16,8 @@ router.use('/user', suscriberDetails);
 router.use('/chitti', Chittis);
 router.use('/payment', payment);
 router.use('/vender', vendorDetails);
+router.use('/chitti-request', chittiRequest);
+
 
 
 
