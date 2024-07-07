@@ -20,13 +20,14 @@ router.post('/register', async (req, res) => {
             password: salt_password,
             phoneNumber: phone_number,
             // id:  mongoose.Types.ObjectId()
-            
+
         })
         await newUser.save()
+        const subscriber_details = await findOne({ user_id: newUser._id })
         return res.status(200).json({
             status: 200,
             message: 'User created successfully',
-            data:newUser
+            data: { "new user details": newUser, "User Subscription Detials":subscriber_details}
         })
     } catch (error) {
         return res.status(400).json({ message: error.message });
