@@ -89,4 +89,19 @@ router.post('/subscriber-request', async (req, res) => {
     }
 });
 
+router.get("/chitti", async (req, res) => {
+    const { id } = req.body
+    const chitti = await Chittis.find({ user_id: id })
+
+    if (chitti.length == 0) {
+        return res.status(400).json({ message: "Chitti not found" });
+
+    }
+    return res.status(200).json({
+        status: 200,
+        message: 'Chitti retrived successfully',
+        data:chitti
+    });
+})
+
 module.exports = router;
