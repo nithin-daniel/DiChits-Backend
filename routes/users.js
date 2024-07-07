@@ -19,7 +19,7 @@ router.post('/register', async (req, res) => {
         const newUser = new UsersSchema({
             role: role,
             password: salt_password,
-            phoneNumber: phoneNumber
+            phoneNumber: phone_number
         })
         await newUser.save()
         return res.status(200).json({
