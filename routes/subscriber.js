@@ -6,6 +6,7 @@ const SuscriberDetailsSchema = require("../models/suscriberDetails");
 
 const mongoose = require('mongoose');
 const Chittis = require('../models/Chittis');
+const suscriberDetails = require('../models/suscriberDetails');
 
 
 router.post('/subscriber-details', async (req, res) => {
@@ -79,6 +80,21 @@ router.get("/chitti", async (req, res) => {
         message: 'Chitti retrived successfully',
         data: chitti
     });
-})
+});
+
+router.get('/get-users', async (req, res) => {
+    const { id } = req.body;
+
+    const user_details = await suscriberDetails.find({ user_id: id })
+
+    if (!user_details) {
+        return res.status(404).json({ message: "User Details not found" });
+    }
+    return res.status(200).json({
+        status: 200,
+        message: 'User Details Retrived Successfully',
+        data: user_details
+    })
+});
 
 module.exports = router;

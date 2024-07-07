@@ -4,6 +4,7 @@ const router = express.Router()
 const UsersSchema = require("../models/users");
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const suscriberDetails = require('../models/suscriberDetails');
 
 
 router.post('/register', async (req, res) => {
@@ -23,11 +24,11 @@ router.post('/register', async (req, res) => {
 
         })
         await newUser.save()
-        const subscriber_details = await findOne({ user_id: newUser._id })
+        const subscriber_details = await find({ user_id: newUser._id })
         return res.status(200).json({
             status: 200,
             message: 'User created successfully',
-            data: { "new user details": newUser, "User Subscription Detials":subscriber_details}
+            data: { "new user details": newUser, "User Subscription Detials": subscriber_details }
         })
     } catch (error) {
         return res.status(400).json({ message: error.message });
@@ -65,5 +66,7 @@ router.post("/login", async (req, res) => {
         return res.status(400).json({ message: error.message });
     }
 })
+
+
 
 module.exports = router;
