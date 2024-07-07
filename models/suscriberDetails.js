@@ -30,6 +30,9 @@ const SuscriberDetailsSchema = mongoose.Schema(
         },
         aadhar:{
             type:Number
+        },
+        pan_no:{
+            type:String
         }
     },
     {

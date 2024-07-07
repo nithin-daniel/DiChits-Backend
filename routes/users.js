@@ -20,6 +20,7 @@ router.post('/register', async (req, res) => {
             password: salt_password,
             phoneNumber: phone_number,
             // id:  mongoose.Types.ObjectId()
+            
         })
         await newUser.save()
         return res.status(200).json({

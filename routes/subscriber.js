@@ -9,7 +9,7 @@ const Chittis = require('../models/Chittis');
 
 
 router.post('/subscriber-details', async (req, res) => {
-    const { dob, gender, age, location, pincode, address, aadhar, user_id, name } = req.body;
+    const { dob, gender, age, location, pincode, address, aadhar, user_id, name, pan_no } = req.body;
     try {
         const user = await SuscriberDetailsSchema.findOne({ id: user_id });
         if (user) {
@@ -24,7 +24,8 @@ router.post('/subscriber-details', async (req, res) => {
             pincode: pincode,
             address: address,
             aadhar: aadhar,
-            name:name
+            name: name,
+            pan_no:pan_no
         });
         await subscriberDetails.save()
         return res.status(200).json({
@@ -66,7 +67,7 @@ router.post('/subscriber-request', async (req, res) => {
 });
 
 router.get("/chitti", async (req, res) => {
-    
+
     const chitti = await Chittis.find({})
 
     if (chitti.length == 0) {
