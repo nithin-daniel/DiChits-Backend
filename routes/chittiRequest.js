@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
     const { chittiId } = req.body;
 
     try {
-        const chitti = await chittiRequest.find({ chitti_id: chittiId,status:"PENDING" })
+        const chitti = await chittiRequest.find({ chitti_id: chittiId, status: "PENDING" })
         if (chitti.length === 0) {
             return res.status(404).json({ message: "Chitti not found" });
 
@@ -22,7 +22,29 @@ router.get('/', async (req, res) => {
         return res.status(200).json({
             status: 200,
             message: 'Chitti request list successfully',
-            data:chitti
+            data: chitti
+        });
+    } catch (error) {
+        return res.status(400).json({ message: error.message });
+    }
+});
+
+router.post('/accept', async (req, res) => {
+    const { chittiId } = req.body;
+
+    try {
+        const chitti = await chittiRequest.findOne({ chitti_id: chittiId, status: "PENDING" })
+        if (chitti.length === 0) {
+            return res.status(404).json({ message: "Chitti not found" });
+
+        }
+        chitti.status = "ACCEPTED"
+        await chitti.save()
+
+        return res.status(200).json({
+            status: 200,
+            message: 'Chitti request accepted successfully',
+            data: chitti
         });
     } catch (error) {
         return res.status(400).json({ message: error.message });
