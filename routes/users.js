@@ -11,7 +11,7 @@ router.post('/register', async (req, res) => {
     const { role, password, phone_number } = req.body;
     try {
         let user = await UsersSchema.find({ phoneNumber: phone_number });
-        if (!user.length == 0) {
+        if (user.length === 0) {
             return res.status(400).json({ message: 'Phone number already used' });
         }
         const salt = await bcrypt.genSalt(10)
